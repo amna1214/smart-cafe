@@ -24,7 +24,8 @@ export default function Home() {
     setCurrentMenuIndex((prev) => (prev + 1) % scrollingMenuItems.length);
   }, 2500);
   return () => clearInterval(interval);
-}, []); 
+  // eslint-disable-next-line
+}, [])
 
   const popularItems = [
     { name: "Coffee", img: "/images/coffee.png", rating: 4.9, orders: "1.2k+ orders", path: "/coffee", badge: "🔥 POPULAR", badgeColor: "#e63946" },
