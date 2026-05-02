@@ -27,7 +27,6 @@ export default function SideCart() {
 
   const handlePaymentChange = (e) => {
     setPaymentForm({ ...paymentForm, [e.target.name]: e.target.value });
-    // ✅ Clear error when user types
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: "" });
     }
@@ -42,7 +41,6 @@ export default function SideCart() {
     if (!value.startsWith("+92")) value = "+92";
     let digits = value.slice(3).replace(/[^0-9]/g, "").slice(0, 10);
     setPaymentForm({ ...paymentForm, phone: "+92" + digits });
-    // ✅ Clear phone error
     if (errors.phone) {
       setErrors({ ...errors, phone: "" });
     }
@@ -67,7 +65,7 @@ export default function SideCart() {
     setCardDetails({ ...cardDetails, cvv: value });
   };
 
-  // ✅ VALIDATION FUNCTION
+  // ✅ VALIDATION FUNCTION (FIXED)
   const validateForm = () => {
     const newErrors = {};
 
@@ -76,13 +74,12 @@ export default function SideCart() {
       newErrors.name = "Please enter your name";
     }
 
-    // Phone validation
+    // ✅ Phone validation - 9 digits minimum
     const phoneDigits = paymentForm.phone.replace("+92", "");
-    if (phoneDigits.length < 10) {
-      newErrors.phone = "Please enter a valid 10-digit phone number";
-    }
     if (phoneDigits === "") {
       newErrors.phone = "Phone number is required";
+    } else if (phoneDigits.length < 9) {
+      newErrors.phone = "Please enter a valid phone number";
     }
 
     // Transaction ID validation (for JazzCash/EasyPaisa)
@@ -258,7 +255,7 @@ export default function SideCart() {
                     ))}
                   </select>
 
-                  {/* ✅ Name with Error */}
+                  {/* Name with Error */}
                   <div className="input-group">
                     <input 
                       type="text" 
@@ -272,7 +269,7 @@ export default function SideCart() {
                     {errors.name && <span className="error-text">{errors.name}</span>}
                   </div>
 
-                  {/* ✅ Phone with Error */}
+                  {/* Phone with Error */}
                   <div className="input-group">
                     <input 
                       type="text" 
@@ -319,14 +316,26 @@ export default function SideCart() {
 
                   {paymentMethod !== 'card' && (
                     <>
-                      
+                      {/* Transaction ID with Error */}
+                      <div className="input-group">
+                        <input 
+                          type="text" 
+                          name="transactionId" 
+                          placeholder="Transaction ID (TID)" 
+                          value={paymentForm.transactionId} 
+                          onChange={handlePaymentChange} 
+                          required 
+                          className={errors.transactionId ? 'input-error' : ''}
+                        />
+                        {errors.transactionId && <span className="error-text">{errors.transactionId}</span>}
+                      </div>
                       
                       <div className="payment-instructions-box">
                         <p>📱 Send <strong>Rs. {total}</strong> to:</p>
                         {paymentMethod === 'jazzcash' && <p><strong>JazzCash:</strong> 0300-1234567</p>}
                         {paymentMethod === 'easypaisa' && <p><strong>EasyPaisa:</strong> 0300-1234567</p>}
                         <p>Account Name: <strong>Smart Cafe</strong></p>
-                        
+                        <p className="payment-note">⚠️ Enter TID after payment</p>
                       </div>
                     </>
                   )}
