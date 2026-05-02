@@ -8,12 +8,12 @@ export default function Home() {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
 
   const scrollingMenuItems = [
-    { name: "Coffee", img: "/images/coffee.png", price: "Rs. 200", desc: "Rich & Aromatic", path: "/coffee" },
-    { name: "Burger", img: "/images/burger.png", price: "Rs. 300", desc: "Juicy & Delicious", path: "/burger" },
-    { name: "Juice", img: "/images/juice.png", price: "Rs. 150", desc: "Fresh & Natural", path: "/juice" },
-    { name: "Ice Cream", img: "/images/ice-cream.png", price: "Rs. 180", desc: "Creamy & Sweet", path: "/icecream" },
-    { name: "Shawarma", img: "/images/shawarma.png", price: "Rs. 280", desc: "Spicy & Flavorful", path: "/shawarma" },
-    { name: "Milk Shake", img: "/images/milk-shake.png", price: "Rs. 220", desc: "Thick & Creamy", path: "/milkshake" },
+    { name: "Coffee", img: "/images/coffee.png",  desc: "Rich & Aromatic", path: "/coffee" },
+    { name: "Burger", img: "/images/burger.png",  desc: "Juicy & Delicious", path: "/burger" },
+    { name: "Juice", img: "/images/juice.png", desc: "Fresh & Natural", path: "/juice" },
+    { name: "Ice Cream", img: "/images/ice-cream.png", desc: "Creamy & Sweet", path: "/icecream" },
+    { name: "Shawarma", img: "/images/shawarma.png",  desc: "Spicy & Flavorful", path: "/shawarma" },
+    { name: "Milk Shake", img: "/images/milk-shake.png",  desc: "Thick & Creamy", path: "/milkshake" },
   ];
 
   // ✅ Fixed useEffect - Added eslint-disable
