@@ -17,14 +17,13 @@ export default function Home() {
   ];
 
   // ✅ Fixed useEffect - Added eslint-disable
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentMenuIndex((prev) => (prev + 1) % scrollingMenuItems.length);
-    }, 2500);
-    return () => clearInterval(interval);
-    // eslint-disable-next-line
-  }, []);
-
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentMenuIndex((prev) => (prev + 1) % scrollingMenuItems.length);
+  }, 2500);
+  return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [scrollingMenuItems.length]);
   const popularItems = [
     { name: "Coffee", img: "/images/coffee.png", rating: 4.9, orders: "1.2k+ orders", path: "/coffee?item=Latte", badge: "🔥 POPULAR", badgeColor: "#e63946" },
     { name: "Burger", img: "/images/burger.png", rating: 4.8, orders: "950+ orders", path: "/burger?item=Zinger%20Burger", badge: "🍔 HOT", badgeColor: "#ff6b6b" },
