@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useCart } from "../context/CartContext";
+
 import SideCart from "../components/SideCart";
 import "../style.css";
 
 export default function Menu() {
-  const { setIsCartOpen } = useCart();
+  
   const [likedItems, setLikedItems] = useState({});
 
   const toggleLike = (e, itemName) => {

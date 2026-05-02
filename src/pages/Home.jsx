@@ -18,12 +18,13 @@ export default function Home() {
   ];
 
   // Auto-scroll effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentMenuIndex((prev) => (prev + 1) % scrollingMenuItems.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
+ 
+ useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentMenuIndex((prev) => (prev + 1) % scrollingMenuItems.length);
+  }, 2500);
+  return () => clearInterval(interval);
+}, []); 
 
   const popularItems = [
     { name: "Coffee", img: "/images/coffee.png", rating: 4.9, orders: "1.2k+ orders", path: "/coffee", badge: "🔥 POPULAR", badgeColor: "#e63946" },
